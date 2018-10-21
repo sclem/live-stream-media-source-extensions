@@ -83,7 +83,7 @@ class Mp4Segmenter extends Transform {
             throw new Error('moovLength greater than chunkLength');
         }
     }
-    
+
     _findMoof(chunk) {
         //console.log('findMoof');
         if (chunk[4] !== 0x6D || chunk[5] !== 0x6F || chunk[6] !== 0x6F || chunk[7] !== 0x66) {
@@ -119,7 +119,7 @@ class Mp4Segmenter extends Transform {
             throw new Error('mooflength > chunklength');
         }
     }
-    
+
     _findMdat(chunk) {
         //console.log('find mdat');
         if (this._mdatBuffer) {
@@ -187,6 +187,7 @@ class Mp4Segmenter extends Transform {
     }
 
     _transform(chunk, encoding, callback) {
+        console.log('gotchunk, length: ', chunk.length);
         this._parseChunk(chunk);
         callback();
     }
